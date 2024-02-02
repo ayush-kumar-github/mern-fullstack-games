@@ -4,7 +4,7 @@ const Card = ({ product }) => {
   return (
     <div className="pb-3 ">
       <img
-        className="w-[100%] rounded h-80 sm:h-100"
+        className="w-[100%] rounded h-80 sm:h-120"
         src={
           product.imageUrl.startsWith("/")
             ? `http://localhost:5000${product.imageUrl}`
