@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ product }) => {
   return (
-    <div className="pb-3">
+    <div className="pb-3 sm:h-200">
       <img
         className="w-[100%] rounded h-60"
         src={
