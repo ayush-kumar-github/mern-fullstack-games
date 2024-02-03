@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import About from "./components/About";
-import ProductDetails from "./screens/ProductDetails";
+// import ProductDetails from "./screens/ProductDetails";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -23,6 +23,8 @@ import ListUserScreen from "./screens/admin/ListUserScreen";
 import ListProductScreen from "./screens/admin/ListProductScreen";
 import ProductEditScreen from "./screens/admin/ProductEditScreen";
 import UserEditScreen from "./screens/admin/UserEditScreen";
+
+const LazyLoadedComponent = lazy(() => import("./screens/ProductDetails"));
 
 const router = createBrowserRouter([
   {
@@ -51,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/product/:id",
-        element: <ProductDetails />,
+        element: (
+          <Suspense fallback={<h2>loading....</h2>}>
+            <LazyLoadedComponent />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",
